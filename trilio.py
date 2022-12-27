@@ -13,7 +13,7 @@ class Trilio:
             difficulty=4,
             minimum_transactions=1
         )
-        # Create genisis
+        # Create genesis
         self.trilio.chain.append(Block(datetime.now().timestamp(), ["genisis block"]))
         self.Wallet = Wallet()
         self.TradeStorage = TradeStorage()
