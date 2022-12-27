@@ -1,24 +1,25 @@
 import hashlib, random
 
+
 # Addresses
 class Wallet:
     def __init__(self):
         self.addresses = []
 
     def create_wallet(self):
-        pve = random.randint(100000000000,99999999999999)
-        pbc = random.randint(100000000000,99999999999999)
-        private_key = "pve"+str(hashlib.sha256(str(pve).encode('utf-8')).hexdigest())
-        public_key =  "pbc"+str(hashlib.sha256(str(pbc).encode('utf-8')).hexdigest())
+        pve = random.randint(100000000000, 99999999999999)
+        pbc = random.randint(100000000000, 99999999999999)
+        private_key = "pve" + str(hashlib.sha256(str(pve).encode('utf-8')).hexdigest())
+        public_key = "pbc" + str(hashlib.sha256(str(pbc).encode('utf-8')).hexdigest())
         cred_keys = {
             "address": {
-                "pve":private_key,
-                "pbc":public_key
+                "pve": private_key,
+                "pbc": public_key
             },
             "info": {
-                "balance":float(0),
-                "assets" : [],
-                "collections" : []
+                "balance": float(0),
+                "assets": [],
+                "collections": []
             }
         }
         if self.validate_address(private_key, public_key) == False:
@@ -63,7 +64,7 @@ class Wallet:
                 return address["address"]["pbc"]
         return "Failed"
 
-    def credit_wallet(self, public_key = None, amount = None):
+    def credit_wallet(self, public_key=None, amount=None):
         if public_key == None or amount == None:
             return "Failed"
 
@@ -72,8 +73,6 @@ class Wallet:
                 address["info"]["balance"] += amount
                 return address["info"]["balance"]
         return "Failed"
-
-
 
     def validate_address(self, private_key=None, public_key=None):
         r = self.require(private_key, public_key)

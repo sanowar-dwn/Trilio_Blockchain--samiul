@@ -1,4 +1,4 @@
-#from trilio import Trilio
+# from trilio import Trilio
 from trilio import *
 
 # Creates a blockchain object
@@ -34,7 +34,6 @@ print("These are the balance details:")
 # This shows that there is zero balance
 print(blockchain.Wallet.get_balance(private_key=address["pve"], public_key=address["pbc"]))  # Get a wallet's balance
 
-
 # This shows that there is no asset currently
 print(blockchain.Wallet.get_assets(private_key=address["pve"], public_key=address["pbc"]))  # Get a wallet's assets
 
@@ -51,8 +50,6 @@ blockchain.Wallet.credit_wallet(public_key=address["pbc"], amount=10)
 print("This is the current balance after crediting the wallet --------------------------------------->")
 print(blockchain.Wallet.get_balance(private_key=address["pve"], public_key=address["pbc"]))  # Get a wallet's balance
 
-
-
 print(blockchain.trilio.chain)
 
 print(blockchain)
@@ -60,17 +57,17 @@ print(blockchain)
 print("This is the chain validity------------------------------>")
 print(blockchain.validate_chain())
 
-#Sending tokens to the wallet:
+# Sending tokens to the wallet:
 # Need to import datetime
 # mention the keys and the amount
 blockchain.create_transaction(
     datetime.now(),
-    data = {
-        "type":"token-transfer",
-        "data":{
-            "to":address_02["pbc"],
-            "from":address["pve"],
-            "amount":10
+    data={
+        "type": "token-transfer",
+        "data": {
+            "to": address_02["pbc"],
+            "from": address["pve"],
+            "amount": 10
         }
     }
 )

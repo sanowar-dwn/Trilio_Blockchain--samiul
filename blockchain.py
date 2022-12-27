@@ -1,4 +1,4 @@
-#blockchain
+# blockchain
 
 class Blockchain:
     def __init__(self, name="", difficulty=2, minimum_transactions=2):
