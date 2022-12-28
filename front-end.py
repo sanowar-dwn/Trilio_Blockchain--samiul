@@ -56,13 +56,29 @@ with st.container():
 st.header("Blockchain ")
 # name = st.text_input("enter the name of your block", )
 # data = name
-st.markdown("***")
-st.markdown("# create your block first")
+
 with st.container():
     bc = Trilio()
+    blocks = []
+    # block height
+    if st.button("check height"):
+        height = len(bc.trilio.chain)
+        st.text(f" the block height is {height}")
+
+    st.markdown("***")
+    st.markdown("# create your block first")
     if st.button("press to create wallet"):
         wallet = bc.Wallet.create_wallet()
         st.success(wallet)
+        blocks.append(wallet)
+
+    # show blocks
+    if st.button("show al the blocks"):
+        def show_blocks():
+            for i in blocks:
+                for j in i:
+                    print(j)
+        st.success(show_blocks())
 
     st.markdown("***")
     st.markdown("# DO TRANSACTION")
@@ -104,9 +120,30 @@ with st.container():
         credit = bc.Wallet.create_wallet(public_key = cred_pub, amount = cred_amount)
         st.success(credit)
 
+    # these are the balance details
+    st.markdown("***")
+    st.markdown("these are the balance details")
+
+    blnc_pve = st.text_input("private key")
+    blnc_pbc = st.text_input("public key")
+    if st.button("show that there is zero balance"):
+        get_balances = bc.Wallet.get_balance(private_key=blnc_pve, public_key= blnc_pbc)
+        st.success(get_balances)
+
+    # assets
+    if st.button("shows that there is no asset currently"):
+        asset_bc = bc.Wallet.get_assets(private_key = blnc_pve, public_key=blnc_pbc)
+        st.success(asset_bc)
+
+    #get collection
+    if st.button("shows that there are no collections"):
+        collections = bc.Wallet.get_collections(private_key=blnc_pve,public_key=blnc_pbc)
+        st.success(collections)
+
+
     # chain validity
     st.markdown("***")
-    st.markdown("# check validity")
+    st.markdown("# check chain validity")
     # st.button(bc.trilio.chain)
     status = bc.trilio.chain
     if st.button("is chain valid"):

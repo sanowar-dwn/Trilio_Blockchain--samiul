@@ -76,3 +76,6 @@ blockchain.create_transaction(
 # You will see that it decreased
 print("This is the balance of the first wallet")
 print(blockchain.Wallet.get_balance(private_key=address["pve"], public_key=address["pbc"]))  # Get a wallet's balance
+chain = blockchain.trilio.chain
+for i in chain:
+    print(i)
