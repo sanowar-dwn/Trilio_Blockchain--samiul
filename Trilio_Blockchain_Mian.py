@@ -4,6 +4,7 @@ from trilio import *
 # Creates a blockchain object
 blockchain = Trilio()
 print(blockchain)
+all_wallets = [] #creating an empty list to store the wallets
 
 print("This is the validity Status ------------------------------------->")
 valid = blockchain.validate_chain()  # True = Valid, False = Invalid
